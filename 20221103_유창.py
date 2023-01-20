@@ -269,7 +269,7 @@ if __name__ == "__main__":
     select_model = 'testmodel'
     model_create(select_model,count)
 
-    knns = train_knn(select_model,count)
+    # knns = train_knn(select_model,count)
 
     capture = cv2.VideoCapture(0)
     capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -303,17 +303,29 @@ if __name__ == "__main__":
                 else:
                     print('error')
         elif k == ord('c'): #검사
+            
             if len(result_img_list) == 15:
                 results = check_point(knns,result_img_list)
-                print(results)
+                res = True
+                for r in results:
+                    if r == False:
+                        res = False
+                if res == False:
+                    print("검사결과 NG 판정됨")
+                else:
+                    print("검사결과 OK 판정됨")
+                print(f'세부검사 결과 : {results}')
             else:
-                print('false')
+                print("Text 인식 안됨!!")
         else:
             ret, frame = capture.read()
-        
+            frame = cv2.rectangle(frame, (50,200),(590,280),(0,255,0),2)
+            dst = frame[200:280, 50:590]
+
         # dst = frame[200:350, 50:600]
         result_img_list, result_img = img_pretreatment(frame)
         cv2.imshow("VideoFrame", frame)
+        cv2.imshow("dst",dst)
         cv2.imshow("VideoResult", result_img)
         
 
