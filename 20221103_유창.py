@@ -319,11 +319,11 @@ if __name__ == "__main__":
                 print("Text 인식 안됨!!")
         else:
             ret, frame = capture.read()
-            frame = cv2.rectangle(frame, (50,200),(590,280),(0,255,0),2)
+            frame = cv2.rectangle(frame, (50,200),(590,280),(0,255,0),1)
             dst = frame[200:280, 50:590]
 
         # dst = frame[200:350, 50:600]
-        result_img_list, result_img = img_pretreatment(frame)
+        result_img_list, result_img = img_pretreatment(dst)
         cv2.imshow("VideoFrame", frame)
         cv2.imshow("dst",dst)
         cv2.imshow("VideoResult", result_img)
