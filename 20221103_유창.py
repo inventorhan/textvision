@@ -34,7 +34,7 @@ def contour_make(img, height, width, channel):
         
         contours_dict.append({
             'contour': contour,
-            'id': num,
+            'id': num, 
             'x': x,
             'y': y,
             'w': w,
@@ -269,7 +269,7 @@ if __name__ == "__main__":
     select_model = 'testmodel'
     model_create(select_model,count)
 
-    # knns = train_knn(select_model,count)
+    knns = train_knn(select_model,count)
 
     capture = cv2.VideoCapture(0)
     capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -319,8 +319,8 @@ if __name__ == "__main__":
                 print("Text 인식 안됨!!")
         else:
             ret, frame = capture.read()
-            frame = cv2.rectangle(frame, (50,200),(590,280),(0,255,0),1)
-            dst = frame[200:280, 50:590]
+            frame = cv2.rectangle(frame, (100,200),(540,280),(0,255,0),1)
+            dst = frame[200:280, 100:540]
 
         # dst = frame[200:350, 50:600]
         result_img_list, result_img = img_pretreatment(dst)
